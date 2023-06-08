@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		AAACCB172A32273F001EDB26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB162A32273F001EDB26 /* AppDelegate.swift */; };
 		AAACCB192A32273F001EDB26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB182A32273F001EDB26 /* SceneDelegate.swift */; };
-		AAACCB1B2A32273F001EDB26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB1A2A32273F001EDB26 /* ViewController.swift */; };
 		AAACCB202A322741001EDB26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAACCB1F2A322741001EDB26 /* Assets.xcassets */; };
 		AAACCB232A322741001EDB26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAACCB212A322741001EDB26 /* LaunchScreen.storyboard */; };
 		AAACCB2B2A322C8F001EDB26 /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB2A2A322C8F001EDB26 /* HabitsStore.swift */; };
+		AAACCB2D2A323BF5001EDB26 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB2C2A323BF5001EDB26 /* MainTabBarController.swift */; };
+		AAACCB2F2A323D9C001EDB26 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */; };
+		AAACCB312A323DAF001EDB26 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB302A323DAF001EDB26 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AAACCB132A32273F001EDB26 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAACCB162A32273F001EDB26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAACCB182A32273F001EDB26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AAACCB1A2A32273F001EDB26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AAACCB1F2A322741001EDB26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAACCB222A322741001EDB26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAACCB242A322741001EDB26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAACCB2A2A322C8F001EDB26 /* HabitsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitsStore.swift; sourceTree = "<group>"; };
+		AAACCB2C2A323BF5001EDB26 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = ../MainTabBarController.swift; sourceTree = "<group>"; };
+		AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
+		AAACCB302A323DAF001EDB26 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,9 @@
 			children = (
 				AAACCB162A32273F001EDB26 /* AppDelegate.swift */,
 				AAACCB182A32273F001EDB26 /* SceneDelegate.swift */,
-				AAACCB1A2A32273F001EDB26 /* ViewController.swift */,
+				AAACCB2C2A323BF5001EDB26 /* MainTabBarController.swift */,
+				AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */,
+				AAACCB302A323DAF001EDB26 /* InfoViewController.swift */,
 				AAACCB2A2A322C8F001EDB26 /* HabitsStore.swift */,
 				AAACCB1F2A322741001EDB26 /* Assets.xcassets */,
 				AAACCB212A322741001EDB26 /* LaunchScreen.storyboard */,
@@ -138,9 +144,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAACCB2B2A322C8F001EDB26 /* HabitsStore.swift in Sources */,
-				AAACCB1B2A32273F001EDB26 /* ViewController.swift in Sources */,
 				AAACCB172A32273F001EDB26 /* AppDelegate.swift in Sources */,
 				AAACCB192A32273F001EDB26 /* SceneDelegate.swift in Sources */,
+				AAACCB2F2A323D9C001EDB26 /* HabitsViewController.swift in Sources */,
+				AAACCB312A323DAF001EDB26 /* InfoViewController.swift in Sources */,
+				AAACCB2D2A323BF5001EDB26 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
