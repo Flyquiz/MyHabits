@@ -15,12 +15,12 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setupTabBarController() {
-        let habbitNC = UINavigationController(rootViewController: HabitsViewController())
+        let habitNC = UINavigationController(rootViewController: HabitsViewController())
         let infoNC = UINavigationController(rootViewController: InfoViewController())
-        habbitNC.tabBarItem = UITabBarItem(title: "Привычки", image: UIImage(named: "HabbitsTabBarImage"), tag: 0)
+        habitNC.tabBarItem = UITabBarItem(title: "Привычки", image: UIImage(named: "HabitsTabBarImage"), tag: 0)
         infoNC.tabBarItem = UITabBarItem(title: "Информация", image: UIImage(systemName: "info.circle.fill"), tag: 1)
         UITabBar.appearance().backgroundColor = .systemGray5
         UITabBar.appearance().tintColor = .systemPurple
-        viewControllers = [habbitNC, infoNC]
+        viewControllers = [habitNC, infoNC]
     }
 }
