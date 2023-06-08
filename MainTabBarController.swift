@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,8 @@ class MainTabBarController: UITabBarController {
         infoNC.tabBarItem = UITabBarItem(title: "Информация", image: UIImage(systemName: "info.circle.fill"), tag: 1)
         UITabBar.appearance().backgroundColor = .systemGray5
         UITabBar.appearance().tintColor = .systemPurple
+        UINavigationBar.appearance().tintColor = .systemPurple
+        
         viewControllers = [habitNC, infoNC]
     }
 }
