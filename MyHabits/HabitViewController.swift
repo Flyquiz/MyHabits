@@ -63,8 +63,10 @@ final class HabitViewController: UIViewController {
     private lazy var timePickerField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "time"
+        textField.placeholder = "error"
         textField.textColor = .systemPurple
+        textField.inputView = timePicker
+        textField.text = timeFormat(time: timePicker.date)
         return textField
     }()
     
@@ -73,7 +75,7 @@ final class HabitViewController: UIViewController {
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .time
-        
+        datePicker.addTarget(self, action: #selector(timePickerAction(timePicker:)), for: .valueChanged)
         return datePicker
     }()
     
@@ -149,6 +151,16 @@ final class HabitViewController: UIViewController {
     
     @objc private func colorButtonAction() {
         present(colorPickerVC, animated: true)
+    }
+    
+    @objc private func timePickerAction(timePicker: UIDatePicker) {
+        timePickerField.text = timeFormat(time: timePicker.date)
+    }
+    
+    private func timeFormat(time: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        return formatter.string(from: time)
     }
 }
 
