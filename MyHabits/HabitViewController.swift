@@ -9,6 +9,7 @@ import UIKit
 
 final class HabitViewController: UIViewController {
     
+//    MARK: HabbitTextField
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -26,6 +27,7 @@ final class HabitViewController: UIViewController {
         return textField
     }()
     
+//    MARK: ColorPicker
     private let colorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +46,13 @@ final class HabitViewController: UIViewController {
         return button
     }()
     
+    private lazy var colorPickerVC: UIColorPickerViewController = {
+        let colorPickerViewController = UIColorPickerViewController()
+        colorPickerViewController.delegate = self
+        return colorPickerViewController
+    }()
+    
+//    MARK: TimePicker
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -67,6 +76,7 @@ final class HabitViewController: UIViewController {
         textField.textColor = .systemPurple
         textField.inputView = timePicker
         textField.text = timeFormat(time: timePicker.date)
+        textField.isUserInteractionEnabled = false
         return textField
     }()
     
@@ -80,6 +90,7 @@ final class HabitViewController: UIViewController {
     }()
     
     
+//    MARK: LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearance()
@@ -87,7 +98,12 @@ final class HabitViewController: UIViewController {
         setupNavigationBar()
     }
     
+    @objc private func returnActrion() {
+        self.dismiss(animated: true)
+    }
+ 
     
+//    MARK: Layout
     private func setupLayout() {
         [nameLabel, habitTextField, colorLabel, colorButton, timeLabel, timeSubLabel, timePickerField, timePicker].forEach {
             view.addSubview($0)
@@ -127,28 +143,19 @@ final class HabitViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.topItem?.title = "Создать"
+        
         let leftBarButton = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(returnActrion))
         navigationItem.leftBarButtonItem = leftBarButton
-        
         
         let rightBarButton = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: nil)
         navigationItem.rightBarButtonItem = rightBarButton
     }
-    
-    @objc private func returnActrion() {
-        self.dismiss(animated: true)
-    }
-    
+   
+//    MARK: Actions
     @objc private func textFieldAction() {
         
     }
-    
-    private lazy var colorPickerVC: UIColorPickerViewController = {
-        let colorPickerViewController = UIColorPickerViewController()
-        colorPickerViewController.delegate = self
-        return colorPickerViewController
-    }()
-    
+
     @objc private func colorButtonAction() {
         present(colorPickerVC, animated: true)
     }
@@ -157,6 +164,7 @@ final class HabitViewController: UIViewController {
         timePickerField.text = timeFormat(time: timePicker.date)
     }
     
+//    MARK: Others
     private func timeFormat(time: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"
