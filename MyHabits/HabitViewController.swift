@@ -23,7 +23,8 @@ final class HabitViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Бегать по утрам, спать 8 часов и т.п."
         textField.delegate = self
-        textField.addTarget(self, action: #selector(textFieldAction), for: .editingDidEnd)
+        textField.autocorrectionType = .no
+//        textField.addTarget(self, action: #selector(textFieldAction), for: .editingDidEnd)
         return textField
     }()
     
@@ -96,6 +97,8 @@ final class HabitViewController: UIViewController {
         setupAppearance()
         setupLayout()
         setupNavigationBar()
+        habitTextField.becomeFirstResponder()
+        view.addTapGestureToHideKeyboard()
     }
     
     @objc private func returnActrion() {
@@ -176,9 +179,11 @@ final class HabitViewController: UIViewController {
 
 extension HabitViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        true
+        view.endEditing(true)
+        return true
     }
 }
+
 
 extension HabitViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
@@ -187,4 +192,9 @@ extension HabitViewController: UIColorPickerViewControllerDelegate {
 }
 
 
-//TODO: Нужно докрутить апиеренс (для табвью)
+extension UIView {
+    func addTapGestureToHideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        addGestureRecognizer(tapGesture)
+    }
+}
