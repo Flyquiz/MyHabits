@@ -21,6 +21,8 @@ final class HabitViewController: UIViewController {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Бегать по утрам, спать 8 часов и т.п."
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldAction), for: .editingDidEnd)
         return textField
     }()
     
@@ -34,9 +36,11 @@ final class HabitViewController: UIViewController {
 
     private lazy var colorButton: UIButton = {
         let button = UIButton()
+        let colorPickerVC = UIColorPickerViewController()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 15
         button.backgroundColor = .systemOrange
+        button.addTarget(self, action: #selector(colorButtonAction), for: .touchUpInside)
         return button
     }()
     
@@ -132,4 +136,35 @@ final class HabitViewController: UIViewController {
     @objc private func returnActrion() {
         self.dismiss(animated: true)
     }
+    
+    @objc private func textFieldAction() {
+        
+    }
+    
+    private lazy var colorPickerVC: UIColorPickerViewController = {
+        let colorPickerViewController = UIColorPickerViewController()
+        colorPickerViewController.delegate = self
+        return colorPickerViewController
+    }()
+    
+    @objc private func colorButtonAction() {
+        present(colorPickerVC, animated: true)
+    }
 }
+
+
+
+extension HabitViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        true
+    }
+}
+
+extension HabitViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        colorButton.backgroundColor = viewController.selectedColor
+    }
+}
+
+
+//TODO: Нужно докрутить апиеренс (для табвью)
