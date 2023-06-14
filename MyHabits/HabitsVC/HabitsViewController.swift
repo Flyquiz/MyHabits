@@ -17,20 +17,19 @@ final class HabitsViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(HabitViewCell.self, forCellWithReuseIdentifier: HabitViewCell.identifier)
-        
+        collectionView.backgroundColor = nil
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupLayout()
         setupAppearance()
+        setupLayout()
     }
     
     private func setupLayout() {
         view.addSubview(habitsCollectionView)
-        habitsCollectionView.backgroundColor = .red
         
         NSLayoutConstraint.activate([
             habitsCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -73,12 +72,15 @@ extension HabitsViewController: UICollectionViewDataSource {
 
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = UIScreen.main.bounds.width
+        let width: CGFloat = UIScreen.main.bounds.width - 16 * 2
         return CGSize(width: width, height: 130)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        12
     }
 }
 

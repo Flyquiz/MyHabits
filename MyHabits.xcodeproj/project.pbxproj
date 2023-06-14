@@ -31,7 +31,7 @@
 		AAACCB2C2A323BF5001EDB26 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = ../MainTabBarController.swift; sourceTree = "<group>"; };
 		AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		AAACCB302A323DAF001EDB26 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		AAC000172A3A37D400D06661 /* HabitViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HabitViewCell.swift; path = MyHabits/HabitViewCell.swift; sourceTree = "<group>"; };
+		AAC000172A3A37D400D06661 /* HabitViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,6 @@
 		AAACCB0A2A32273F001EDB26 = {
 			isa = PBXGroup;
 			children = (
-				AAC000172A3A37D400D06661 /* HabitViewCell.swift */,
 				AAACCB152A32273F001EDB26 /* MyHabits */,
 				AAACCB142A32273F001EDB26 /* Products */,
 			);
@@ -68,15 +67,32 @@
 				AAACCB162A32273F001EDB26 /* AppDelegate.swift */,
 				AAACCB182A32273F001EDB26 /* SceneDelegate.swift */,
 				AAACCB2C2A323BF5001EDB26 /* MainTabBarController.swift */,
-				AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */,
+				AAC000192A3A44EB00D06661 /* HabitsVC */,
 				AA346A062A3369F700D89F68 /* HabitViewController.swift */,
 				AAACCB302A323DAF001EDB26 /* InfoViewController.swift */,
-				AAACCB2A2A322C8F001EDB26 /* HabitsStore.swift */,
+				AAC0001A2A3A450700D06661 /* Model */,
 				AAACCB1F2A322741001EDB26 /* Assets.xcassets */,
 				AAACCB212A322741001EDB26 /* LaunchScreen.storyboard */,
 				AAACCB242A322741001EDB26 /* Info.plist */,
 			);
 			path = MyHabits;
+			sourceTree = "<group>";
+		};
+		AAC000192A3A44EB00D06661 /* HabitsVC */ = {
+			isa = PBXGroup;
+			children = (
+				AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */,
+				AAC000172A3A37D400D06661 /* HabitViewCell.swift */,
+			);
+			path = HabitsVC;
+			sourceTree = "<group>";
+		};
+		AAC0001A2A3A450700D06661 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AAACCB2A2A322C8F001EDB26 /* HabitsStore.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

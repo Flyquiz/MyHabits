@@ -39,7 +39,7 @@ final class HabitViewCell: UICollectionViewCell {
     private lazy var trackButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 38)), for: .normal)
         return button
 //        checkmark.circle.fill
 //        circle.fill
@@ -60,6 +60,8 @@ final class HabitViewCell: UICollectionViewCell {
         }
         contentView.backgroundColor = .white
         
+        contentView.layer.cornerRadius = 8
+        
         let inset: CGFloat = 20
         
         NSLayoutConstraint.activate([
@@ -73,7 +75,9 @@ final class HabitViewCell: UICollectionViewCell {
             countLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
             
             trackButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
-            trackButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+            trackButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            trackButton.heightAnchor.constraint(equalToConstant: 38),
+//            trackButton.widthAnchor.constraint(equalTo: trackButton.heightAnchor)
         ])
     }
 }
