@@ -17,6 +17,7 @@
 		AAACCB2F2A323D9C001EDB26 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */; };
 		AAACCB312A323DAF001EDB26 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB302A323DAF001EDB26 /* InfoViewController.swift */; };
 		AAC000182A3A37D400D06661 /* HabitViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC000172A3A37D400D06661 /* HabitViewCell.swift */; };
+		AAC0001C2A3A456D00D06661 /* ProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC0001B2A3A456D00D06661 /* ProgressCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		AAACCB302A323DAF001EDB26 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		AAC000172A3A37D400D06661 /* HabitViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewCell.swift; sourceTree = "<group>"; };
+		AAC0001B2A3A456D00D06661 /* ProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */,
 				AAC000172A3A37D400D06661 /* HabitViewCell.swift */,
+				AAC0001B2A3A456D00D06661 /* ProgressCollectionViewCell.swift */,
 			);
 			path = HabitsVC;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 				AAACCB172A32273F001EDB26 /* AppDelegate.swift in Sources */,
 				AA346A072A3369F700D89F68 /* HabitViewController.swift in Sources */,
 				AAACCB192A32273F001EDB26 /* SceneDelegate.swift in Sources */,
+				AAC0001C2A3A456D00D06661 /* ProgressCollectionViewCell.swift in Sources */,
 				AAACCB2F2A323D9C001EDB26 /* HabitsViewController.swift in Sources */,
 				AAACCB312A323DAF001EDB26 /* InfoViewController.swift in Sources */,
 				AAACCB2D2A323BF5001EDB26 /* MainTabBarController.swift in Sources */,

@@ -9,6 +9,8 @@ import UIKit
 
 final class HabitsViewController: UIViewController {
     
+    
+    
     private lazy var habitsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -17,6 +19,7 @@ final class HabitsViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(HabitViewCell.self, forCellWithReuseIdentifier: HabitViewCell.identifier)
+        collectionView.register(ProgressCollectionViewCell.self, forCellWithReuseIdentifier: ProgressCollectionViewCell.identifier)
         collectionView.backgroundColor = nil
         return collectionView
     }()
@@ -62,8 +65,15 @@ extension HabitsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitViewCell.identifier, for: indexPath) as! HabitViewCell
-        return cell
+        switch indexPath.item {
+        case 0:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressCollectionViewCell.identifier, for: indexPath)
+            return cell
+            
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitViewCell.identifier, for: indexPath) as! HabitViewCell
+            return cell
+        }
     }
     
     
@@ -73,7 +83,12 @@ extension HabitsViewController: UICollectionViewDataSource {
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = UIScreen.main.bounds.width - 16 * 2
-        return CGSize(width: width, height: 130)
+        switch indexPath.item {
+        case 0:
+            return CGSize(width: width, height: 60)
+        default:
+            return CGSize(width: width, height: 130)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
