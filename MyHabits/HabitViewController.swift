@@ -21,7 +21,7 @@ final class HabitViewController: UIViewController {
     private lazy var habitTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Бегать по утрам, спать 8 часов и т.п."
+        textField.text = "Бегать по утрам, спать 8 часов и т.п."
         textField.delegate = self
         textField.autocorrectionType = .no
 //        textField.addTarget(self, action: #selector(textFieldAction), for: .editingDidEnd)
@@ -104,6 +104,16 @@ final class HabitViewController: UIViewController {
     @objc private func returnActrion() {
         self.dismiss(animated: true)
     }
+    
+    @objc private func saveAction() {
+        let newHabit = Habit(name: habitTextField.text ?? "",
+                             date: timePicker.date,
+                             color: colorButton.backgroundColor!)
+        let store = HabitsStore.shared
+        store.habits.append(newHabit)
+        
+        returnActrion()
+    }
  
     
 //    MARK: Layout
@@ -150,7 +160,7 @@ final class HabitViewController: UIViewController {
         let leftBarButton = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(returnActrion))
         navigationItem.leftBarButtonItem = leftBarButton
         
-        let rightBarButton = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: nil)
+        let rightBarButton = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveAction))
         navigationItem.rightBarButtonItem = rightBarButton
     }
    
