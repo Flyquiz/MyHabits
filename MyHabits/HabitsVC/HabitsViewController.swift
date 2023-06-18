@@ -9,7 +9,7 @@ import UIKit
 
 final class HabitsViewController: UIViewController {
     
-    
+    private var habitModel = HabitsStore.shared.habits
     
     private lazy var habitsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -49,10 +49,11 @@ final class HabitsViewController: UIViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(barButtonAction))
         navigationController?.navigationBar.topItem?.rightBarButtonItem = addButton
     }
+    
     @objc private func barButtonAction() {
         let habitNC = UINavigationController(rootViewController: HabitViewController())
         habitNC.modalPresentationStyle = .fullScreen
-        habitNC.navigationItem.backButtonDisplayMode = .default
+//        habitNC.navigationItem.backButtonDisplayMode = .default
         present(habitNC, animated: true)
     }
 }
@@ -61,7 +62,7 @@ final class HabitsViewController: UIViewController {
 
 extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        habitModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,6 +73,7 @@ extension HabitsViewController: UICollectionViewDataSource {
             
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitViewCell.identifier, for: indexPath) as! HabitViewCell
+            cell.setupCell(habit: habitModel[indexPath.item])
             return cell
         }
     }

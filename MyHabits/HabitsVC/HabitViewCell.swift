@@ -54,6 +54,14 @@ final class HabitViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    public func setupCell(habit: Habit) {
+        habitLabel.textColor = habit.color
+        trackButton.tintColor = habit.color
+        habitLabel.text = habit.name
+        timeLabel.text = habit.dateString
+    }
+    
     private func setupLayout() {
         [habitLabel, timeLabel, countLabel, trackButton].forEach {
             contentView.addSubview($0)

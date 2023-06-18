@@ -46,6 +46,10 @@ final class ProgressCollectionViewCell: UICollectionViewCell {
     }
     
     
+    public func setupCell(habits: [Habit]) {
+        
+    }
+    
     private func setupLayout() {
         [mainLabel, percentLabel, mainProgressView].forEach {
             contentView.addSubview($0)

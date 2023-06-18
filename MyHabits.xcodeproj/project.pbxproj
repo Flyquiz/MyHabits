@@ -70,7 +70,6 @@
 				AAACCB182A32273F001EDB26 /* SceneDelegate.swift */,
 				AAACCB2C2A323BF5001EDB26 /* MainTabBarController.swift */,
 				AAC000192A3A44EB00D06661 /* HabitsVC */,
-				AA346A062A3369F700D89F68 /* HabitViewController.swift */,
 				AAACCB302A323DAF001EDB26 /* InfoViewController.swift */,
 				AAC0001A2A3A450700D06661 /* Model */,
 				AAACCB1F2A322741001EDB26 /* Assets.xcassets */,
@@ -84,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */,
+				AA346A062A3369F700D89F68 /* HabitViewController.swift */,
 				AAC000172A3A37D400D06661 /* HabitViewCell.swift */,
 				AAC0001B2A3A456D00D06661 /* ProgressCollectionViewCell.swift */,
 			);
