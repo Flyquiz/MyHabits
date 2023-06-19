@@ -7,10 +7,11 @@
 
 import UIKit
 
-final class HabitViewCell: UICollectionViewCell {
-
+final class HabitCollectionViewCell: UICollectionViewCell {
+    
 //    MARK: CellModel
     private var currentHabit: Habit!
+    private var callBack: (() -> ())!
     
 //    MARK: Labels
     private let habitLabel: UILabel = {
@@ -59,8 +60,9 @@ final class HabitViewCell: UICollectionViewCell {
     }
     
 //    MARK: Cell methods
-    public func setupCell(habit: Habit) {
+    public func setupCell(habit: Habit, callBack: @escaping () -> ()) {
         currentHabit = habit
+        self.callBack = callBack
         
         habitLabel.textColor = habit.color
         trackButton.tintColor = habit.color
@@ -115,5 +117,6 @@ final class HabitViewCell: UICollectionViewCell {
     @objc private func trackButtonAction() {
         trackButton.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 38)), for: .normal)
         HabitsStore.shared.track(currentHabit)
+        callBack()
     }
 }

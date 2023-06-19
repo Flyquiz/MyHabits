@@ -9,6 +9,7 @@ import UIKit
 
 final class ProgressCollectionViewCell: UICollectionViewCell {
     
+//    MARK: Labels
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,19 +24,19 @@ final class ProgressCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 13)
         label.textColor = .systemGray
-        label.text = "50%"
         return label
     }()
     
+//    MARK: ProgressView
     private lazy var mainProgressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.progress = 0.5
         progressView.trackTintColor = .systemGray
         progressView.tintColor = .systemPurple
         return progressView
     }()
 
+//    MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
@@ -45,11 +46,27 @@ final class ProgressCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    public func setupCell(habits: [Habit]) {
-        
+//    TODO: По нажатию на кнопку в основной ячейке, нужна мгновенная перерисовка текущей ячейки
+//    MARK: Cell method
+    public func setupCell(habits: [Habit]){
+        if habits.isEmpty {
+            percentLabel.text = "0%"
+            mainProgressView.progress = 0
+        } else {
+            var takenCounter: Float = 0
+            for habit in habits {
+                if habit.isAlreadyTakenToday == true {
+                    takenCounter += 1
+                }
+            }
+            
+            let toProgress: Float = takenCounter / Float(habits.count)
+            percentLabel.text = "\(Int(toProgress * 100)) %"
+            mainProgressView.progress = toProgress
+        }
     }
     
+//    MARK: Layout
     private func setupLayout() {
         [mainLabel, percentLabel, mainProgressView].forEach {
             contentView.addSubview($0)

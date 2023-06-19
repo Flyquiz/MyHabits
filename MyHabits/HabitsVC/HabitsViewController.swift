@@ -18,7 +18,7 @@ final class HabitsViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(HabitViewCell.self, forCellWithReuseIdentifier: HabitViewCell.identifier)
+        collectionView.register(HabitCollectionViewCell.self, forCellWithReuseIdentifier: HabitCollectionViewCell.identifier)
         collectionView.register(ProgressCollectionViewCell.self, forCellWithReuseIdentifier: ProgressCollectionViewCell.identifier)
         collectionView.backgroundColor = nil
         return collectionView
@@ -69,6 +69,7 @@ final class HabitsViewController: UIViewController {
     @objc private func deleteAction() {
         HabitsStore.shared.habits = []
         habitsCollectionView.reloadData()
+        view.layoutIfNeeded()
     }
 }
 
@@ -90,12 +91,15 @@ extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressCollectionViewCell.identifier, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressCollectionViewCell.identifier, for: indexPath) as! ProgressCollectionViewCell
+            cell.setupCell(habits: habitModel)
             return cell
             
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitViewCell.identifier, for: indexPath) as! HabitViewCell
-            cell.setupCell(habit: habitModel[indexPath.item])
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitCollectionViewCell.identifier, for: indexPath) as! HabitCollectionViewCell
+            cell.setupCell(habit: habitModel[indexPath.item]) {
+                collectionView.reloadData()
+            }
             return cell
         }
     }
