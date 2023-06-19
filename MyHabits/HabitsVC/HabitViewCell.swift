@@ -62,6 +62,14 @@ final class HabitViewCell: UICollectionViewCell {
         timeLabel.text = habit.dateString
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        habitLabel.textColor = nil
+        trackButton.tintColor = nil
+        habitLabel.text = nil
+        timeLabel.text = nil
+    }
+    
     private func setupLayout() {
         [habitLabel, timeLabel, countLabel, trackButton].forEach {
             contentView.addSubview($0)

@@ -42,12 +42,22 @@ final class HabitsViewController: UIViewController {
         ])
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        habitModel = HabitsStore.shared.habits
+        habitsCollectionView.reloadData()
+        print(habitModel)
+    }
+    
     private func setupNavigationBar() {
         navigationItem.title = "Сегодня"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(barButtonAction))
         navigationController?.navigationBar.topItem?.rightBarButtonItem = addButton
+        
+        let debugDeleteButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(deleteAction))
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = debugDeleteButton
     }
     
     @objc private func barButtonAction() {
@@ -55,6 +65,10 @@ final class HabitsViewController: UIViewController {
         habitNC.modalPresentationStyle = .fullScreen
 //        habitNC.navigationItem.backButtonDisplayMode = .default
         present(habitNC, animated: true)
+    }
+    @objc private func deleteAction() {
+        HabitsStore.shared.habits = []
+        habitsCollectionView.reloadData()
     }
 }
 
