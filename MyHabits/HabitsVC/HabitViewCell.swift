@@ -8,7 +8,11 @@
 import UIKit
 
 final class HabitViewCell: UICollectionViewCell {
+
+//    MARK: CellModel
+    private var currentHabit: Habit!
     
+//    MARK: Labels
     private let habitLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -35,16 +39,16 @@ final class HabitViewCell: UICollectionViewCell {
         label.textColor = .systemGray
         return label
     }()
-    
+
+//    MARK: TrackButton
     private lazy var trackButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 38)), for: .normal)
         return button
-//        checkmark.circle.fill
-//        circle.fill
     }()
     
+    
+//    MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
@@ -54,12 +58,21 @@ final class HabitViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+//    MARK: Cell methods
     public func setupCell(habit: Habit) {
+        currentHabit = habit
+        
         habitLabel.textColor = habit.color
         trackButton.tintColor = habit.color
         habitLabel.text = habit.name
         timeLabel.text = habit.dateString
+                
+        if habit.isAlreadyTakenToday == true {
+            trackButton.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 38)), for: .normal)
+        } else {
+            trackButton.setImage(UIImage(systemName: "circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 38)), for: .normal)
+            trackButton.addTarget(self, action: #selector(trackButtonAction), for: .touchUpInside)
+        }
     }
     
     override func prepareForReuse() {
@@ -70,6 +83,7 @@ final class HabitViewCell: UICollectionViewCell {
         timeLabel.text = nil
     }
     
+//    MARK: Layout
     private func setupLayout() {
         [habitLabel, timeLabel, countLabel, trackButton].forEach {
             contentView.addSubview($0)
@@ -95,5 +109,11 @@ final class HabitViewCell: UICollectionViewCell {
 //            trackButton.heightAnchor.constraint(equalToConstant: 38),
 //            trackButton.widthAnchor.constraint(equalTo: trackButton.heightAnchor)
         ])
+    }
+    
+//    MARK: Actions
+    @objc private func trackButtonAction() {
+        trackButton.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 38)), for: .normal)
+        HabitsStore.shared.track(currentHabit)
     }
 }
