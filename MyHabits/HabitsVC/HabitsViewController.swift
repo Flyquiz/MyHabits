@@ -9,8 +9,10 @@ import UIKit
 
 final class HabitsViewController: UIViewController {
     
+//    MARK: Model
     private var habitModel = HabitsStore.shared.habits
     
+//    MARK: CollectionView
     private lazy var habitsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -24,13 +26,23 @@ final class HabitsViewController: UIViewController {
         return collectionView
     }()
     
+    
+//    MARK: LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupAppearance()
         setupLayout()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        habitModel = HabitsStore.shared.habits
+        habitsCollectionView.reloadData()
+        print(habitModel)
+    }
     
+    
+//    MARK: Layout
     private func setupLayout() {
         view.addSubview(habitsCollectionView)
         
@@ -40,13 +52,6 @@ final class HabitsViewController: UIViewController {
             habitsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             habitsCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        habitModel = HabitsStore.shared.habits
-        habitsCollectionView.reloadData()
-        print(habitModel)
     }
     
     private func setupNavigationBar() {
@@ -60,12 +65,14 @@ final class HabitsViewController: UIViewController {
         navigationController?.navigationBar.topItem?.leftBarButtonItem = debugDeleteButton
     }
     
+//    MARK: Actions
     @objc private func barButtonAction() {
         let habitNC = UINavigationController(rootViewController: HabitViewController())
         habitNC.modalPresentationStyle = .fullScreen
 //        habitNC.navigationItem.backButtonDisplayMode = .default
         present(habitNC, animated: true)
     }
+    
     @objc private func deleteAction() {
         HabitsStore.shared.habits = []
         habitsCollectionView.reloadData()
@@ -75,6 +82,7 @@ final class HabitsViewController: UIViewController {
 
 
 
+//MARK: DataSource extension
 extension HabitsViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         2
@@ -108,6 +116,7 @@ extension HabitsViewController: UICollectionViewDataSource {
 }
 
 
+//MARK: Delegate extension
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = UIScreen.main.bounds.width - 16 * 2
@@ -133,8 +142,9 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 
+//MARK: UIView identifier extension
 extension UIView {
-    static var identifier: String {
+    static public var identifier: String {
         String(describing: self)
     }
 }
