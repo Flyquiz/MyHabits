@@ -136,8 +136,15 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let habitDetailsVC = HabitDetailsViewController()
+        habitDetailsVC.habit = habitModel[indexPath.item]
+        navigationController?.pushViewController(habitDetailsVC, animated: true)
     }
 }
 
