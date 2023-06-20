@@ -46,7 +46,6 @@ final class ProgressCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    TODO: По нажатию на кнопку в основной ячейке, нужна мгновенная перерисовка текущей ячейки
 //    MARK: Cell method
     public func setupCell(habits: [Habit]){
         if habits.isEmpty {

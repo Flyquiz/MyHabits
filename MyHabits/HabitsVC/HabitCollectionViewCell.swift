@@ -9,9 +9,10 @@ import UIKit
 
 final class HabitCollectionViewCell: UICollectionViewCell {
     
-//    MARK: CellModel
+//    MARK: Models
     private var currentHabit: Habit!
     private var callBack: (() -> ())!
+    private let dateModel = HabitsStore.shared.dates
     
 //    MARK: Labels
     private let habitLabel: UILabel = {
@@ -68,6 +69,7 @@ final class HabitCollectionViewCell: UICollectionViewCell {
         trackButton.tintColor = habit.color
         habitLabel.text = habit.name
         timeLabel.text = habit.dateString
+        countLabel.text = "Счетчик: \(getTrackCount(habit: habit))"
                 
         if habit.isAlreadyTakenToday == true {
             trackButton.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 38)), for: .normal)
@@ -111,6 +113,16 @@ final class HabitCollectionViewCell: UICollectionViewCell {
 //            trackButton.heightAnchor.constraint(equalToConstant: 38),
 //            trackButton.widthAnchor.constraint(equalTo: trackButton.heightAnchor)
         ])
+    }
+    
+    private func getTrackCount(habit: Habit) -> Int {
+        var count = 0
+        for date in dateModel {
+            if HabitsStore.shared.habit(habit, isTrackedIn: date) {
+                count += 1
+            }
+        }
+        return count
     }
     
 //    MARK: Actions
