@@ -11,6 +11,7 @@ final class HabitDetailsViewController: UIViewController {
     
 //    MARK: Models
     public var habit: Habit!
+    private let habitStore = HabitsStore.shared
     private let dateModel = HabitsStore.shared.dates
     
 //    MARK: UIElements
@@ -28,6 +29,7 @@ final class HabitDetailsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isUserInteractionEnabled = false
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         return tableView
     }()
@@ -40,6 +42,7 @@ final class HabitDetailsViewController: UIViewController {
         setupNavigationBar()
         setupLayout()
     }
+    
     
 //    MARK: Layout
     private func setupLayout() {
@@ -70,12 +73,16 @@ final class HabitDetailsViewController: UIViewController {
 //MARK: DataSource extension
 extension HabitDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        dateModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+        guard let stringDate = HabitsStore.shared.trackDateString(forIndex: indexPath.row) else {
+            fatalError("stringDate is empty")
+        }
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+        cell.setupCell(dateString: stringDate, date: dateModel[indexPath.row], habit: habit)
         return cell
     }
 }
@@ -117,9 +124,13 @@ final class CustomTableViewCell: UITableViewCell {
     }
     
     
-//    public func setupCell(date: Date, habit: Habit) {
-//        HabitsStore.shared.habit(habit, isTrackedIn: date)
-//    }
+    public func setupCell(dateString: String, date: Date, habit: Habit) {
+        cellLabel.text = dateString
+        
+        if HabitsStore.shared.habit(habit, isTrackedIn: date) == true {
+            checkMark.isHidden = false
+        }
+    }
     
     private func setupLayout() {
         addSubview(cellLabel)
