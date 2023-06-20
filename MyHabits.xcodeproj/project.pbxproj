@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA2242342A4209A500B221A4 /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2242332A4209A500B221A4 /* HabitDetailsViewController.swift */; };
 		AA346A072A3369F700D89F68 /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA346A062A3369F700D89F68 /* HabitViewController.swift */; };
 		AAACCB172A32273F001EDB26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB162A32273F001EDB26 /* AppDelegate.swift */; };
 		AAACCB192A32273F001EDB26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACCB182A32273F001EDB26 /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA2242332A4209A500B221A4 /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
 		AA346A062A3369F700D89F68 /* HabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
 		AAACCB132A32273F001EDB26 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAACCB162A32273F001EDB26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			children = (
 				AAACCB2E2A323D9C001EDB26 /* HabitsViewController.swift */,
 				AA346A062A3369F700D89F68 /* HabitViewController.swift */,
+				AA2242332A4209A500B221A4 /* HabitDetailsViewController.swift */,
 				AAC000172A3A37D400D06661 /* HabitCollectionViewCell.swift */,
 				AAC0001B2A3A456D00D06661 /* ProgressCollectionViewCell.swift */,
 			);
@@ -176,6 +179,7 @@
 				AAC0001C2A3A456D00D06661 /* ProgressCollectionViewCell.swift in Sources */,
 				AAACCB2F2A323D9C001EDB26 /* HabitsViewController.swift in Sources */,
 				AAACCB312A323DAF001EDB26 /* InfoViewController.swift in Sources */,
+				AA2242342A4209A500B221A4 /* HabitDetailsViewController.swift in Sources */,
 				AAACCB2D2A323BF5001EDB26 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
