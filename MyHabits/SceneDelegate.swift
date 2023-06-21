@@ -57,3 +57,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+
+
+extension UIViewController {
+    public func setupAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemGray6
+        self.navigationItem.standardAppearance = appearance
+        self.navigationItem.scrollEdgeAppearance = appearance
+        view.backgroundColor = .systemGray5
+    }
+}
