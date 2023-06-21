@@ -92,6 +92,18 @@ final class HabitViewController: UIViewController {
         return datePicker
     }()
     
+//    MARK: DeleteButton
+    private lazy var deleteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
+        button.setTitle("Удалить привычку", for: .normal)
+        button.setTitleColor(.systemRed, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17)
+        button.addTarget(self, action: #selector(deleteButtonAction), for: .touchUpInside)
+        return button
+    }()
+    
     
 //    MARK: LifeCycle methods
     override func viewDidLoad() {
@@ -131,7 +143,7 @@ final class HabitViewController: UIViewController {
     
 //    MARK: Layout
     private func setupLayout() {
-        [nameLabel, habitTextField, colorLabel, colorButton, timeLabel, timeSubLabel, timePickerField, timePicker].forEach {
+        [nameLabel, habitTextField, colorLabel, colorButton, timeLabel, timeSubLabel, timePickerField, timePicker, deleteButton].forEach {
             view.addSubview($0)
         }
         
@@ -163,7 +175,10 @@ final class HabitViewController: UIViewController {
             timePickerField.leadingAnchor.constraint(equalTo: timeSubLabel.trailingAnchor),
             
             timePicker.topAnchor.constraint(equalTo: timeSubLabel.bottomAnchor, constant: 7),
-            timePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            timePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            deleteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -18),
+            deleteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -190,6 +205,17 @@ final class HabitViewController: UIViewController {
         timePickerField.text = timeFormat(time: timePicker.date)
     }
     
+    @objc private func deleteButtonAction() {
+        let alert = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку \"название выбранной привычки\"?", preferredStyle: .alert)
+        let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+            print("deleted")
+        }
+        alert.addAction(cancelAlert)
+        alert.addAction(deleteAction)
+        present(alert, animated: true)
+    }
+    
 //    MARK: Others
     private func prepareVCToEdit(habit: Habit) {
         colorButton.backgroundColor = habit.color
@@ -197,6 +223,7 @@ final class HabitViewController: UIViewController {
         habitTextField.text = habit.name
         timePickerField.text = timeFormat(time: habit.date)
         timePicker.date = habit.date
+        deleteButton.isHidden = false
     }
     
     private func timeFormat(time: Date) -> String {
