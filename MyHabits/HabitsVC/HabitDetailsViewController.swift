@@ -63,8 +63,15 @@ final class HabitDetailsViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = habit.name
         
-        let editButton = UIBarButtonItem(title: "Править", style: .plain, target: self, action: nil)
+        let editButton = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(barButtonAction))
         navigationItem.rightBarButtonItem = editButton
+    }
+    
+    @objc private func barButtonAction() {
+        let habitNC = UINavigationController(rootViewController: HabitViewController())
+        habitNC.modalPresentationStyle = .fullScreen
+        habitNC.navigationBar.topItem?.title = "Править"
+        present(habitNC, animated: true)
     }
 }
 

@@ -155,7 +155,7 @@ final class HabitViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationController?.navigationBar.topItem?.title = "Создать"
+//        navigationController?.navigationBar.topItem?.title = "Создать"
         
         let leftBarButton = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(returnActrion))
         navigationItem.leftBarButtonItem = leftBarButton

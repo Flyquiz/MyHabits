@@ -61,23 +61,23 @@ final class HabitsViewController: UIViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(barButtonAction))
         navigationController?.navigationBar.topItem?.rightBarButtonItem = addButton
         
-        let debugDeleteButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(deleteAction))
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = debugDeleteButton
+//        let debugDeleteButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(deleteAction))
+//        navigationController?.navigationBar.topItem?.leftBarButtonItem = debugDeleteButton
     }
     
 //    MARK: Actions
     @objc private func barButtonAction() {
         let habitNC = UINavigationController(rootViewController: HabitViewController())
         habitNC.modalPresentationStyle = .fullScreen
-//        habitNC.navigationItem.backButtonDisplayMode = .default
+        habitNC.navigationBar.topItem?.title = "Создать"
         present(habitNC, animated: true)
     }
     
-    @objc private func deleteAction() {
-        HabitsStore.shared.habits = []
-        habitsCollectionView.reloadData()
-        view.layoutIfNeeded()
-    }
+//    @objc private func deleteAction() {
+//        HabitsStore.shared.habits = []
+//        habitsCollectionView.reloadData()
+//        view.layoutIfNeeded()
+//    }
 }
 
 
