@@ -206,14 +206,19 @@ final class HabitViewController: UIViewController {
     }
     
     @objc private func deleteButtonAction() {
-        let alert = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку \"название выбранной привычки\"?", preferredStyle: .alert)
-        let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            print("deleted")
+        if let habit = optHabit {
+            let alert = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку \"название выбранной привычки\"?", preferredStyle: .alert)
+            let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
+            let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+                HabitsStore.shared.habits.removeAll{
+                    $0 == habit
+                }
+                self.returnActrion()
+            }
+            alert.addAction(cancelAlert)
+            alert.addAction(deleteAction)
+            present(alert, animated: true)
         }
-        alert.addAction(cancelAlert)
-        alert.addAction(deleteAction)
-        present(alert, animated: true)
     }
     
 //    MARK: Others
