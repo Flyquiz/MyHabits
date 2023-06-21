@@ -9,6 +9,8 @@ import UIKit
 
 final class HabitViewController: UIViewController {
     
+    public var optHabit: Habit? = nil
+    
 //    MARK: HabbitTextField
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -97,21 +99,32 @@ final class HabitViewController: UIViewController {
         setupAppearance()
         setupLayout()
         setupNavigationBar()
-        habitTextField.becomeFirstResponder()
         view.addTapGestureToHideKeyboard()
+        
+        if let habit = optHabit {
+            prepareVCToEdit(habit: habit)
+        } else {
+            habitTextField.becomeFirstResponder()
+        }
     }
+    
     
     @objc private func returnActrion() {
         self.dismiss(animated: true)
     }
     
     @objc private func saveAction() {
-        let newHabit = Habit(name: habitTextField.text ?? "",
-                             date: timePicker.date,
-                             color: colorButton.backgroundColor!)
         let store = HabitsStore.shared
-        store.habits.append(newHabit)
-        
+        if let habit = optHabit {
+            habit.name = habitTextField.text ?? ""
+            habit.date = timePicker.date
+            habit.color = colorButton.backgroundColor!
+        } else {
+            let newHabit = Habit(name: habitTextField.text ?? "",
+                                 date: timePicker.date,
+                                 color: colorButton.backgroundColor!)
+            store.habits.append(newHabit)
+        }
         returnActrion()
     }
  
@@ -178,6 +191,14 @@ final class HabitViewController: UIViewController {
     }
     
 //    MARK: Others
+    private func prepareVCToEdit(habit: Habit) {
+        colorButton.backgroundColor = habit.color
+        habitTextField.textColor = habit.color
+        habitTextField.text = habit.name
+        timePickerField.text = timeFormat(time: habit.date)
+        timePicker.date = habit.date
+    }
+    
     private func timeFormat(time: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"

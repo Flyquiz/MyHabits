@@ -68,7 +68,9 @@ final class HabitDetailsViewController: UIViewController {
     }
     
     @objc private func barButtonAction() {
-        let habitNC = UINavigationController(rootViewController: HabitViewController())
+        let habitVC = HabitViewController()
+        habitVC.optHabit = habit
+        let habitNC = UINavigationController(rootViewController: habitVC)
         habitNC.modalPresentationStyle = .fullScreen
         habitNC.navigationBar.topItem?.title = "Править"
         present(habitNC, animated: true)
