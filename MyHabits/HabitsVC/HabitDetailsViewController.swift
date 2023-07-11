@@ -29,7 +29,7 @@ final class HabitDetailsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.isUserInteractionEnabled = false
+        tableView.allowsSelection = false
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         return tableView
     }()
@@ -55,7 +55,8 @@ final class HabitDetailsViewController: UIViewController {
             
             dateTableView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor, constant: 7),
             dateTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dateTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            dateTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dateTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
