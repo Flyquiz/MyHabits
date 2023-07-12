@@ -63,9 +63,9 @@ extension UIViewController {
     public func setupAppearance() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemGray6
+        appearance.backgroundColor = .systemGray5
         self.navigationItem.standardAppearance = appearance
         self.navigationItem.scrollEdgeAppearance = appearance
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = .systemGray4
     }
 }

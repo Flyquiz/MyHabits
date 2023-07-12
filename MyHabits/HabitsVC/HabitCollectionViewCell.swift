@@ -92,7 +92,7 @@ final class HabitCollectionViewCell: UICollectionViewCell {
         [habitLabel, timeLabel, countLabel, trackButton].forEach {
             contentView.addSubview($0)
         }
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemGray6
         
         contentView.layer.cornerRadius = 8
         
