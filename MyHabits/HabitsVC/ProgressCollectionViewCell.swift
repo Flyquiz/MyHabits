@@ -71,7 +71,7 @@ final class ProgressCollectionViewCell: UICollectionViewCell {
             contentView.addSubview($0)
         }
         
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 8
         
         NSLayoutConstraint.activate([

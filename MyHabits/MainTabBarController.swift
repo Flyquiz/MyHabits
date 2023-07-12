@@ -19,7 +19,7 @@ final class MainTabBarController: UITabBarController {
         let infoNC = UINavigationController(rootViewController: InfoViewController())
         habitNC.tabBarItem = UITabBarItem(title: "Привычки", image: UIImage(named: "HabitsTabBarImage"), tag: 0)
         infoNC.tabBarItem = UITabBarItem(title: "Информация", image: UIImage(systemName: "info.circle.fill"), tag: 1)
-        UITabBar.appearance().backgroundColor = .systemGray5
+        UITabBar.appearance().backgroundColor = .systemGray4
         UITabBar.appearance().tintColor = .systemPurple
         UINavigationBar.appearance().tintColor = .systemPurple
         

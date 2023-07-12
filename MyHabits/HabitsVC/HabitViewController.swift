@@ -147,7 +147,7 @@ final class HabitViewController: UIViewController {
             view.addSubview($0)
         }
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         
         let topInset: CGFloat = 21
         
